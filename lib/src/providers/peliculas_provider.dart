@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:peliculas/src/utils/constantes.dart';
 
 class PeliculasProvider {
-  int _numeroPagina = 0;
   // Future<List<Pelicula>> obtenerPeliculasPopulares() async {
   //   String _language = 'es-Es';
 
@@ -24,9 +23,8 @@ class PeliculasProvider {
 
   Future<List<Pelicula>> getPeliculas(String endpoint) async {
     //luego del host se debe pasar una mapa de datos que recibe la api key
-    _numeroPagina++;
-    final url = Uri.https(host, '$endpoint',
-        {'api_key': apikey, 'page': _numeroPagina.toString()});
+
+    final url = Uri.https(host, '$endpoint', {'api_key': apikey});
     final respuesta = await http.get(url);
     //convertimos la respuesta a un objeto json
     var jsonResponse = json.decode(respuesta.body);

@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final peliculasProvider = new PeliculasProvider();
-  final _peliculaController = Get.put<PeliculaController>(PeliculaController());
+  // final _peliculaController = Get.put<PeliculaController>(PeliculaController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,20 +64,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _cargarPopulares() {
-    _peliculaController.cargarPeliculas();
-    return Obx(() {
-      if (_peliculaController.listapeliculas.length < 1) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      } else {
-        return PageViewPeliculas(
-          listaPeliculas: _peliculaController.listapeliculas,
-        );
-      }
-    });
-
-    /*return FutureBuilder(
+    return FutureBuilder(
         future: peliculasProvider.getPeliculas('/3/movie/popular'),
         builder:
             (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
@@ -90,7 +77,7 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           }
-        });*/
+        });
   }
 }
 // ListTile(
